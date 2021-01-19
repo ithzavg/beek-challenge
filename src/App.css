@@ -4,8 +4,38 @@
   box-sizing: border-box;
 }
 
-.container{
-  background-color: bisque;
+.main-container{
+  background-color: #ffffff;
   height: 100vh;
   width: 100%;
 }
+
+.header{
+  height: 10vh;
+  width: 100%;
+  background-color: #C5F3F5;
+  padding: 10px;
+  
+}
+
+.nav-header ul{
+  list-style: none;
+}
+
+.items__nav-header li{
+  display: inline-block;
+}
+
+.item__centered{
+    float: none;
+    position: absolute;
+    top: 15px;
+    left: 45%;
+
+}
+
+
+
+
+
+
