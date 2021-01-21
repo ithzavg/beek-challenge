@@ -1,26 +1,29 @@
 import http from "../http-common";
 
+const spaceId = "1t4hjzo7y0kb"
+const env = "master"
+
 class ChallengeDataService{
 
-    getAllAudiobooks(baseUrl, spaceId, env){
-        return http.get(`${baseUrl}/spaces/${spaceId}/environments/${env}/entries?select=fields,sys.id,sys.version&locale=es-MX`);
+    getAllAudiobooks(){
+        return http.get(`/spaces/${spaceId}/environments/${env}/entries?select=fields,sys.id,sys.version&locale=es-MX`);
     }
 
-    getAudiobook(baseUrl, spaceId, env,id){
-        return http.get(`${baseUrl}/spaces/${spaceId}/environments/${env}/entries?sys.id=${id}&select=fields,sys.id,sys.version&locale=es-MX`);
+    getAudiobook(id){
+        return http.get(`/spaces/${spaceId}/environments/${env}/entries?sys.id=${id}&select=fields,sys.id,sys.version&locale=es-MX`);
     }
 
-    createAudiobook(baseUrl, spaceId, env, data){
-        return http.post(`${baseUrl}/spaces/${spaceId}/environments/${env}/entries`, data);
+    createAudiobook(data){
+        return http.post(`/spaces/${spaceId}/environments/${env}/entries`, data);
     
     }
 
-    deleteAudiobook(baseUrl, spaceId, env,id){
-        return http.delete(`${baseUrl}/spaces/${spaceId}/environments/${env}/entries/${id}`);
+    deleteAudiobook(id){
+        return http.delete(`/spaces/${spaceId}/environments/${env}/entries/${id}`);
     }
 
-    searchAudioBook(baseUrl, spaceId, env, searchString){
-        return http.get(`${baseUrl}/spaces/${spaceId}/environments/${env}/entries?query=${searchString}&select=fields,sys.id&locale=es-MX`)
+    searchAudioBook(searchString){
+        return http.get(`/spaces/${spaceId}/environments/${env}/entries?query=${searchString}&select=fields,sys.id&locale=es-MX&content_type=audiocontent-v16`)
     }
 }
 

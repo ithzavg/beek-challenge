@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const token = "CFPAT-LBtveUvtDi7YjAhsyNzZURthngcrVnIr53eOZjYnxuc"
 export default axios.create({
-    baseURL: "https://api.contentful.com/spaces/1t4hjzo7y0kb/environments/master/entries",
+    baseURL: "https://api.contentful.com",
     headers: {
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${token}`
     }
 });
