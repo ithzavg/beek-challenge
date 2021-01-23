@@ -49,3 +49,17 @@
     color:#fff;
     background-color:#36D7DC;
 }
+
+.alert-success{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    border: 1px solid #C5F3F5;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+#img-success__alert{
+    width: 50px;
+}

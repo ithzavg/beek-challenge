@@ -37,7 +37,6 @@ export default class AllAudiobooks extends Component{
             this.setState({
                 audiobooksList: response.data.items
             });
-            console.log(response.data);
         })
         
         .catch(e => {
@@ -46,10 +45,8 @@ export default class AllAudiobooks extends Component{
     }
 
     deleteAudiobook(id){
-        console.log(id);
         ChallengeDataService.deleteAudiobook(id)
             .then(response => {
-                console.log(response);
                 this.getAudiobooks();
             })
     }
@@ -93,7 +90,6 @@ export default class AllAudiobooks extends Component{
                                     <img src={actualizar} id="update__action" alt="Icono para actualizar"></img>
                                 </button>
                                 <button onClick={() => this.deleteAudiobook(content.sys.id)}>
-                                    <p>{content.sys.id}</p>
                                     <img src={borrar} id="delete__action" alt="Icono para borrar"></img>
                                 </button>
                             </div>

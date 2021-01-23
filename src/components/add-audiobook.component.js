@@ -1,11 +1,13 @@
 import React, {Component} from "react";
 import ChallengeDataService from "../services/service";
 import '../css/add.css';
+import success from '../assets/success.svg'
 
 export default class AddAudiobook extends Component{
     constructor(props){
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
+        this.newAudiobook = this.newAudiobook.bind(this);
 
         this.state={
             addResponse: false
@@ -51,26 +53,34 @@ export default class AddAudiobook extends Component{
 
         ChallengeDataService.createAudiobook(data)
         .then(response => {
-            if(response.data.status === 201){
-                this.setState({
-                    addResponse: true
-                })
-            }
+            this.setState({
+                addResponse: true
+            })
         })
         .catch(e => {
             console.log(e);
         })
     }
 
+    newAudiobook(){
+        this.setState({
+            addResponse: false
+        })
+    }
+
 
     render(){
-        console.log("----------")
-        console.log(this.state.response)
         return(
             <section> 
                 {this.state.addResponse ? (
-                    <div>
+                    <div className="alert-success">
+                        <img src={success} alt="Icono de guardado exitoso" id="img-success__alert"/>
+
                         <p>Hemos agregado el audiolibro</p>
+                        <p>Para agregar un audiolibro nuevo haz click en el botón</p>
+                        <button  className="button__submit-form" onClick={this.newAudiobook}>
+                            Nuevo
+                        </button>
                     </div>
                 ):(
                    <section>

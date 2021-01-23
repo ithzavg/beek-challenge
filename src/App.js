@@ -18,12 +18,12 @@ function App() {
         <nav className="header__menu">
           <ul>
             <li>
-              <Link to="/add">
+              <Link to="/add" className="item-header__menu">
                 Agregar
               </Link>
             </li>
             <li>
-              <Link to="/all">
+              <Link to="/all" className="item-header__menu">
                 Ver todos
               </Link>
             </li>

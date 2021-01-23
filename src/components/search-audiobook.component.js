@@ -90,10 +90,6 @@ export default class SearchAudiobook extends Component{
                 );
             }
 
-            return(
-                <p>No se han encontrado resultados</p>
-            )
-
          });
         return(
             <section className="container">
@@ -106,7 +102,7 @@ export default class SearchAudiobook extends Component{
                             type="text" 
                             value={this.state.searchString} 
                             onChange={this.onChangeSearchTitle} 
-                            placeholder="Buscar..."/>
+                            placeholder="Buscar..." required/>
                         <button onClick={this.searchString} className="btn-search">
                             <img src={search} alt="search button" id="search__img-button"/>
                         </button>

@@ -37,6 +37,11 @@ body{
   padding-right: 20px;
 }
 
+.item-header__menu{
+  text-decoration: none;
+  color: #000;
+}
+
 
 
 
