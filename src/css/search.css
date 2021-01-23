@@ -1,4 +1,4 @@
- .main__container{
+.main__container{
      height: 300px;
      display: flex;
      justify-content: center;
@@ -51,26 +51,4 @@
   color:#000000;
   }
 
-  .container-item__content{
-      border: 1px solid #bebdbd;
-      border-radius: 15px;
-      width: 40%;
-      height: 30vh;
-      margin-left: 20px;
-      padding: 10px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-  }
-
-  .container-item__img{
-      display: inline-block;
-      margin-left: auto;
-      margin-right: auto;
-  }
-
-  .container-item__img img{
-      width: 80px;
-      margin-right: 15px;
-  }
+  

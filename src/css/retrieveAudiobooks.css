@@ -1,0 +1,54 @@
+.header__title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+
+#list-pages{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#list-pages li{
+    margin-right:20px;
+    width: 30px;
+    height: 30px;
+    background-color:#C5F3F5;
+    border-radius: 8px;
+    border: 1px;
+    color: #000;
+    cursor: pointer;
+    outline:none;
+    text-align: center;
+}
+
+
+#list-pages :hover{
+    background-color: #36D7DC;
+    color: #fff;
+}
+
+#delete__action, #update__action{
+    width: 20px;
+    
+}
+
+.action-container__item{
+    margin-top:5px;
+    float:right;
+}
+
+.action-container__item button{
+    margin-right: 10px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}

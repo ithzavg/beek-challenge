@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import '../css/search.css';
+import '../css/commons.css';
 import ChallengeDataService from "../services/service";
 import search from '../assets/search.svg'
 
@@ -13,18 +14,8 @@ export default class SearchAudiobook extends Component{
 
         this.state ={
             searchString:"",
-    
-            authors:"",
-            costPerPlay:"",
-            cover:"",
-            duration:"",
-            isOriginal:"",
-            narrators: "",
-            streetDate:"",
-            title:"",
-
+            audiobooks: [],
             submitted: false,
-
             result: false
         }
     }
@@ -41,30 +32,21 @@ export default class SearchAudiobook extends Component{
     searchString(){
         ChallengeDataService.searchAudioBook(this.state.searchString)
             .then(response => {
+                console.log(this.state.audiobooks)
                 if(response.data.items.length > 0){
-                    console.log(response.data)
-
-                    this.setState({
-                        authors: response.data.items[0].fields.authors["es-MX"],
-                        costPerPlay: response.data.items[0].fields.cost_per_play["es-MX"],
-                        cover: response.data.items[0].fields.cover["es-MX"],
-                        duration: response.data.items[0].fields.duration["es-MX"],
-                        isOriginal: response.data.items[0].fields.is_original["es-MX"],
-                        narrators: response.data.items[0].fields.narrators["es-MX"],
-                        streetDate: response.data.items[0].fields.street_date["es-MX"],
-                        title:response.data.items[0].fields.title["es-MX"],
-                        
+                    
+                this.setState({
+                        audiobooks: response.data.items,
                         result: true,
-
                         submitted: true
                     });
                 }else{
-                    console.log(response.data)
                     this.setState({
                         submitted: true,
                         result: false
                     })
                 }
+                
                 
             
             })
@@ -74,6 +56,45 @@ export default class SearchAudiobook extends Component{
     }
     
     render(){
+        const { audiobooks } = this.state;
+
+        const renderResultSearch = audiobooks.map((list, index) => {
+            if(Object.keys(list.fields).length !== 0){
+                return (
+                    <div className="container-item__content">
+                        <div className="container-item__img">
+                            <img src={list.fields.cover["es-MX"]} alt="Audiobook Cover"></img>
+                        </div>
+                        <div className="container-item__details">
+                            <div>
+                                <label><strong>Título:</strong></label>
+                                {list.fields.title["es-MX"]}
+                            </div>
+                            <div>
+                                <label><strong>Autor: </strong></label>
+                                {list.fields.authors["es-MX"]}
+                            </div>
+                            <div>
+                                <label><strong>Narrador: </strong></label>
+                                {list.fields.narrators["es-MX"]}
+                            </div>
+                            <div>
+                                <label><strong>Fecha de lanzamiento: </strong></label>
+                                {list.fields.street_date["es-MX"]}
+                            </div>
+                            <div>
+                                {list.fields.duration["es-MX"]} min | {list.fields.is_original["es-MX"] ? (<span>Beek Original</span>): (<span></span>)}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            return(
+                <p>No se han encontrado resultados</p>
+            )
+
+         });
         return(
             <section className="container">
                 <section className="main__container">
@@ -93,41 +114,7 @@ export default class SearchAudiobook extends Component{
                 </section>
                 <div className="container-item">
                     {this.state.submitted && this.state.result ? (
-                       <div className="container-item__content">
-                           <div className="container-item__img">
-                               <img src={this.state.cover} alt="Book Cover"></img>
-                           </div>
-                            <div className="container-item__details">
-                                <div>
-                                    <label>
-                                    <strong>Título:</strong>
-                                    </label>
-                                    {this.state.title}
-                                </div>
-                                <div>
-                                    <label>
-                                    <strong>Autor:</strong>
-                                    </label>
-                                    {this.state.authors}
-                                </div>
-                                <div>
-                                    <label>
-                                    <strong>Narrador:</strong>
-                                    </label>
-                                    {this.state.narrators}
-                                </div>
-                                <div>
-                                    <label>
-                                    <strong>Fecha de Lanzamiento:</strong>
-                                    </label>
-                                    {this.state.streetDate}
-                                </div>
-                                <div>
-                                    {this.state.duration} min | {this.state.isOriginal ? (<span>Beek Original</span>): (<span></span>)}
-                                </div>
-                            </div>
-                       </div>
-                       
+                       renderResultSearch
                     ) : (
                         <span>
                             {this.state.submitted && this.state.result === false ?

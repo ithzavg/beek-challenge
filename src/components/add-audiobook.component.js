@@ -1,124 +1,105 @@
 import React, {Component} from "react";
 import ChallengeDataService from "../services/service";
+import '../css/add.css';
 
 export default class AddAudiobook extends Component{
     constructor(props){
-
         super(props);
+        this.onSubmit = this.onSubmit.bind(this);
 
-        this.createAudiobook = this.createAudiobook.bind(this);
-
-        this.state ={
-            title: "",
-            is_original: false,
-            street_date: "",
-            cost_per_play: "",
-            authors:"",
-            narrators: "",
-            duration: "",
-            cover:"",
-
-            submitted: false
-
+        this.state={
+            addResponse: false
         }
     }
 
-    createAudiobook(){
+
+      onSubmit(e) {
+        e.preventDefault();
+
         var data ={
-            title: this.state.title,
-            is_original: this.state.is_original,
-            street_date: this.state.street_date,
-            cost_per_play: this.state.cost_per_play,
-            authors: this.state.authors,
-            narrators: this.state.narrators,
-            duration: this.state.duration,
-            cover: this.state.cover
+            "fields": {
+                "title": {
+                  "es-MX": this.title.value
+                },
+                "is_original": {
+                  "es-MX": this.original.checked
+                },
+                "street_date": {
+                  "es-MX": this.fecha.value
+                },
+                "cost_per_play": {
+                  "es-MX": parseInt(this.costo.value)
+                },
+                "authors": {
+                  "es-MX": [
+                    this.autor.value
+                  ]
+                },
+                "narrators": {
+                  "es-MX": [
+                   this.narrador.value
+                  ]
+                },
+                "duration": {
+                  "es-MX": parseInt(this.duracion.value)
+                },
+                "cover": {
+                  "es-MX": this.cover.value
+              }
+            }
         }
 
         ChallengeDataService.createAudiobook(data)
         .then(response => {
-            this.setState({
-                title: response.data.title,
-                is_original: response.data.is_original,
-                street_date: response.data.street_date,
-                cost_per_play: response.data.cost_per_play,
-                authors: response.data.authors,
-                narrators: response.data.narrators,
-                duration: response.data.duration,
-                cover: response.data.cover,
-
-                submitted: true
-            })
-           console.log(response.data);
+            if(response.data.status === 201){
+                this.setState({
+                    addResponse: true
+                })
+            }
         })
-
-        .catch( e => {
+        .catch(e => {
             console.log(e);
-        });
+        })
     }
 
-    newAudiobook(){
-        this.setState({
-            title: "",
-            is_original: "",
-            street_date: "",
-            cost_per_play: "",
-            authors:"",
-            narrators: "",
-            duration: "",
-            cover:"",
-
-            submitted: false
-        });
-    }
 
     render(){
+        console.log("----------")
+        console.log(this.state.response)
         return(
-            <section className="submit-form"> 
-                { this.state.submitted ? (
+            <section> 
+                {this.state.addResponse ? (
                     <div>
-                        <h3>Your audiobook has been successfully added!</h3>
-                        <button className="button" onClick={this.newAudiobook}> 
-                            Add new
-                        </button>
+                        <p>Hemos agregado el audiolibro</p>
                     </div>
                 ):(
-                    <form>
-                        <label htmlFor="title">
-                            <span>Audiobook Title</span>
-                            <input type="text" id="title" required value={this.state.title} placeholder="The little prince"/>
-                        </label>
-                        <label for="is-original">
-                            <span>Is the book original?</span>
-                            <input type="checkbox" id="is-original" required />
-                        </label>
-                        <label for="street-date">
-                            <span>Select the Street Date</span>
-                            <input type="date" id="street-date"/>
-                        </label>
-                        <label for="authors">
-                            <span>Authors</span>
-                            <input type="text" id="authors" required value={this.state.authors} placeholder="A1, A2, A3"/>
-                        </label>
-                        <label for="narrators">
-                            <span>Narrators</span>
-                            <input type="text" id="narrators" required value={this.state.narrators} placeholder="N1, N2, N3"/>
-                        </label>
-                        <label for="duration">
-                            <span>Duration</span>
-                            <input type="text" id="duration" required value={this.state.duration} placeholder="100"/>
-                        </label>
-                        <label for="cover">
-                            <span>Cover</span>
-                            <input type="text" id="cover" required value={this.state.cover} placeholder=""/>
-                        </label>
-
-                        <button onClick={this.createAudiobook} className="button">
-                            Add
-                        </button>
-                    </form>
-                )
-                }
+                   <section>
+                        <div className="form-container">
+                            <div className="title-form">
+                                <h2>Agrega nuevos audiolibros a nuestro catálogo</h2>
+                            </div>
+                            <form className="login__container--form">
+                                <input type="text" className="input" placeholder="Título" required ref={(c) => this.title = c} name="title"/>
+                                <input type="number" className="input" placeholder="Duración" required ref={(c) => this.duracion = c} name="duracion"/>
+                                <input type="text" className="input" placeholder="Autor" required ref={(c) => this.autor = c} name="autor"/>
+                                <input type="text" className="input" placeholder="Narrador" required ref={(c) => this.narrador = c} name="narrador"/>
+                                <input type="date" className="input" placeholder="Fecha de lanzamiento" required ref={(c) => this.fecha = c} name="fecha"/>
+                                <input type="text" className="input" placeholder="Cover" required ref={(c) => this.cover = c} name="cover"/>
+                                <input type="number" className="input" placeholder="Costo" required ref={(c) => this.costo = c} name="costo"/>
+                                <label>
+                                    ¿Es original?
+                                    <input type="checkbox" className="input-checkbox"  
+                                    required ref={(c) => this.original = c} name="original"/>
+                                </label>
+                                <button  onClick={this.onSubmit} 
+                                        className="button__submit-form">
+                                    Agregar
+                                </button>
+                            </form>    
+                        </div>
+                   </section>
+                )}
+                
             </section>
         )
     }
