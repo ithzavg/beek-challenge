@@ -27,7 +27,7 @@ In the project directory, you can run:
 `npm start`
 
 ## Credits
-Code: Ithzamary Vilchis
-API: Beek.io 
+- **Code: Ithzamary Vilchis**
+- **API: Beek.io** 
 
 
