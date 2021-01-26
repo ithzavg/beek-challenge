@@ -32,7 +32,6 @@ export default class SearchAudiobook extends Component{
     searchString(){
         ChallengeDataService.searchAudioBook(this.state.searchString)
             .then(response => {
-                console.log(this.state.audiobooks)
                 if(response.data.items.length > 0){
                     
                 this.setState({
@@ -89,6 +88,8 @@ export default class SearchAudiobook extends Component{
                     </div>
                 );
             }
+
+            return null
 
          });
         return(

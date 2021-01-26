@@ -25,6 +25,7 @@
     margin-top:10px;
     width: 40%;
     outline:none;
+    margin-bottom: 15px;
 }
 
 .input-checkbox{
@@ -48,6 +49,12 @@
 .button__submit-form:hover{
     color:#fff;
     background-color:#36D7DC;
+}
+
+.button__update-form{
+    text-decoration: none;
+    color: #000;
+    padding: 10px 0 0px 6px;
 }
 
 .alert-success{

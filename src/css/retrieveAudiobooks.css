@@ -37,6 +37,9 @@
     width: 20px;
     
 }
+#update__action{
+    margin-right: 10px;
+}
 
 .action-container__item{
     margin-top:5px;

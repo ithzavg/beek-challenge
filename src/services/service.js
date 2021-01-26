@@ -25,6 +25,15 @@ class ChallengeDataService{
     searchAudioBook(searchString){
         return http.get(`/spaces/${spaceId}/environments/${env}/entries?query=${searchString}&select=fields,sys.id&locale=es-MX&content_type=audiocontent-v16`)
     }
+
+    updateAudioBook(id, data, version){
+        return http.put(`/spaces/${spaceId}/environments/${env}/entries/${id}`,  data, 
+                        {
+                            headers: {
+                                'X-Contentful-Version': version
+                            }
+                        })
+    }
 }
 
 export default new ChallengeDataService();

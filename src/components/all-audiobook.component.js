@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Link} from 'react-router-dom';
 import ChallengeDataService from "../services/service";
 import '../css/commons.css';
 import '../css/retrieveAudiobooks.css';
@@ -17,7 +18,8 @@ export default class AllAudiobooks extends Component{
         this.state = {
             audiobooksList: [],
             currentPage: 1,
-            audiobooksPerPage: 10
+            audiobooksPerPage: 10,
+
         } 
     }
 
@@ -86,18 +88,21 @@ export default class AllAudiobooks extends Component{
                                 {content.fields.duration["es-MX"]} min | {content.fields.is_original["es-MX"] ? (<span>Beek Original</span>): (<span></span>)}
                             </div>
                             <div className="action-container__item">
-                                <button>
+                                <Link to={`/update/${content.sys.id}/${content.sys.version}`}>
                                     <img src={actualizar} id="update__action" alt="Icono para actualizar"></img>
-                                </button>
+                                </Link>
                                 <button onClick={() => this.deleteAudiobook(content.sys.id)}>
                                     <img src={borrar} id="delete__action" alt="Icono para borrar"></img>
                                 </button>
                             </div>
                         </div>
+
+
                         
                     </div>
                 );
             }
+            return null
          });
 
 
