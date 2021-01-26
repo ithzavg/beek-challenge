@@ -13,7 +13,7 @@ This project was developed to show my skills in software engineering
 I deployed this app with Heroku
 
 ## Screenshots
-![Image of home](https://drive.google.com/file/d/1arq3uJlanF7h1rC6v1PL2LgOSOos_hO_/view?usp=sharing)
+![Image of home](https://i.postimg.cc/rmrRv8rG/beek1.png)
 
 ## Framework used
 React v17.0.1
