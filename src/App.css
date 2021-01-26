@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body{
+  font-family:'Montserrat', sans-serif;
+}
+
 .main-container{
   background-color: #ffffff;
   height: 100vh;
@@ -14,25 +18,31 @@
   height: 10vh;
   width: 100%;
   background-color: #C5F3F5;
-  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:15px;
+  
   
 }
 
-.nav-header ul{
+.header__menu ul{
   list-style: none;
 }
 
-.items__nav-header li{
-  display: inline-block;
+.header__menu ul li{
+  list-style: none;
+  display: inline;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.item__centered{
-    float: none;
-    position: absolute;
-    top: 15px;
-    left: 45%;
-
+.item-header__menu{
+  text-decoration: none;
+  color: #000;
 }
+
+
 
 
 
